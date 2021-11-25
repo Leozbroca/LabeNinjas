@@ -30,6 +30,7 @@ export class AppContainer extends Component {
         return <Carrinho
           listaServicos={this.state.listaServicos}
           removendoDoCarrinho={this.removendoDoCarrinho}
+          finalizarCompra={this.finalizarCompra}
         />
       case "detalhe":
         return <DetalhesServicos 
@@ -89,7 +90,6 @@ export class AppContainer extends Component {
       }
     })
       .then((res) => {
-        alert("Item removido do carrinho!")
         this.getAllJobs()
       })
       .catch((err) => {
@@ -106,7 +106,6 @@ export class AppContainer extends Component {
     })
       .then((res) => {
         this.setState({ listaServicos: res.data.jobs })
-        console.log(res)
       })
       .catch((err) => {
         console.log("erro", err)
@@ -126,6 +125,13 @@ export class AppContainer extends Component {
     .catch((err) => {
         console.log("erro", err)
     })
+  }
+
+  finalizarCompra = () => {
+    for(let item of this.state.listaServicos){
+      this.removendoDoCarrinho(item.id)
+    }
+    alert("Obrigado pela compra!")
   }
 
   render() {
