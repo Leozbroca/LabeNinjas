@@ -136,9 +136,9 @@ export default class Cadastro extends React.Component {
                         />
                         <label>pix</label>
                     </div>
-                    <input type="date" data-date="" data-date-format="AAAA-MM-DD"
-                            value={this.state.inputData}
-                            onChange={this.onChangeInputData} />
+                    <input type="date"
+                        value={this.state.inputData}
+                        onChange={this.onChangeInputData} />
                     <button onClick={this.criarTrabalho}>Cadastrar</button>
                 </DivCadastro>
             </div>

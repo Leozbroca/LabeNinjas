@@ -1,21 +1,21 @@
 import React from "react";
 import axios from "axios";
 
-export default class Carrinho extends React.Component{
+export default class Carrinho extends React.Component {
 
     calcularValorTotal = () => {
         let valorTotal = 0
-        for(let item of this.props.listaServicos){
-           if(item.taken){
-            valorTotal += item.price
-           }
+        for (let item of this.props.listaServicos) {
+            if (item.taken) {
+                valorTotal += item.price
+            }
         }
         return valorTotal
     }
 
-    render(){
-        const carrinho = this.props.listaServicos.map((item) => {   
-            if(item.taken){
+    render() {
+        const carrinho = this.props.listaServicos.map((item) => {
+            if (item.taken) {
                 return (<div key={item.id}>
                     {item.title}
                     ${item.price}
@@ -24,7 +24,7 @@ export default class Carrinho extends React.Component{
             }
         })
 
-        return(
+        return (
             <div>
                 <b>Carrinho</b>
                 {carrinho}
