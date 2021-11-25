@@ -1,12 +1,10 @@
 import React from "react";
 import axios from "axios";
 import styled from "styled-components";
-
-const DivCadastro = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
+import Button from '@material-ui/core/Button';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { theme } from './Temas'
+import * as C from './styles'
 
 
 export default class Cadastro extends React.Component {
@@ -86,13 +84,15 @@ export default class Cadastro extends React.Component {
         console.log(this.state.inputData)
         return (
             <div>
-                <DivCadastro>
+                <C.DivCadastro>
                     <div>
+                        <div>
                         <label>Título:</label>
                         <input
                             value={this.state.inputTitulo}
                             onChange={this.onChangeInputTitulo} />
-                    </div>
+                        </div>
+                    
                     <div>
                         <label>Descrição:</label>
                         <input
@@ -136,11 +136,18 @@ export default class Cadastro extends React.Component {
                         />
                         <label>pix</label>
                     </div>
+                    </div>
                     <input type="date"
                         value={this.state.inputData}
                         onChange={this.onChangeInputData} />
-                    <button onClick={this.criarTrabalho}>Cadastrar</button>
-                </DivCadastro>
+                         <ThemeProvider theme={theme}>
+                        <Button variant="contained" color="primary"  onClick={this.criarTrabalho} >
+                        Cadastrar
+                        </Button>
+                        </ThemeProvider>
+                    {/* <button onClick={this.criarTrabalho} >Cadastrar</button> */}
+                    
+                </C.DivCadastro>
             </div>
         )
     }
