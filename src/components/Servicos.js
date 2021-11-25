@@ -14,6 +14,7 @@ export default class Servicos extends React.Component{
                     <p>{item.description}</p>
                     <p>{item.price}</p>
                     <p>{item.dueDate}</p>
+                    <button onClick={() => this.props.mudarPaginaDetalhe(item.id)}>Detalhes Serviço</button>
                     <button onClick={() => this.props.adicionarAoCarrinho(item.id)}>Adicionar ao carrinho</button>
                 </div>
                 )

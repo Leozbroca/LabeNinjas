@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import Cadastro from './Cadastro'
 import Servicos from './Servicos'
 import Carrinho from './Carrinho'
+import DetalhesServicos from './DetalhesServicos'
 import axios from 'axios'
 
 export class AppContainer extends Component {
   state={
     page: "home",
     listaServicos: [],
+    jobDetalhes: {}
   }
 
   componentDidMount = () => {
@@ -25,11 +27,16 @@ export class AppContainer extends Component {
         listaServicos={this.state.listaServicos}
         getAllJobs={this.getAllJobs}
         adicionarAoCarrinho={this.adicionarAoCarrinho}
+        mudarPaginaDetalhe={this.mudarPaginaDetalhe}
         />
       case "carrinho":
         return <Carrinho
         listaServicos={this.state.listaServicos}
         removendoDoCarrinho={this.removendoDoCarrinho}
+        />
+      case "detalhe":
+        return <DetalhesServicos 
+        jobDetalhes={this.state.jobDetalhes}
         />
       default:
         return <appContainer/>
@@ -46,6 +53,11 @@ export class AppContainer extends Component {
 
   mudarPaginaCarrinho = () => {
     this.setState({page: "carrinho"})
+  }
+
+  mudarPaginaDetalhe = (id) => {
+    this.setState({page: "detalhe"})
+    this.getJobById(id)
   }
 
   adicionarAoCarrinho = (id) => {
@@ -98,6 +110,21 @@ export class AppContainer extends Component {
     .then((res) => {
         this.setState({listaServicos: res.data.jobs})
         console.log(res)
+    })
+    .catch((err) => {
+        console.log("erro", err)
+    })
+  }
+
+  getJobById = (id) => {
+    const url = `https://labeninjas.herokuapp.com/jobs/${id}`
+    axios.get(url, {
+        headers: {
+            Authorization: "944276f6-19c0-49d4-ab75-a9d3e31490f9"
+        }
+    })
+    .then((res) => {
+        this.setState({jobDetalhes: res.data})
     })
     .catch((err) => {
         console.log("erro", err)
