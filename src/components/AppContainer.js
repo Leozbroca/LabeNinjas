@@ -17,7 +17,7 @@ import * as C from './styles'
 
 export class AppContainer extends Component {
   state = {
-    page: "queroSerUmNinja",
+    page: "home",
     listaServicos: [],
   }
 
@@ -25,7 +25,27 @@ export class AppContainer extends Component {
   togglePage = () => {
     switch (this.state.page) {
       case "home":
-        return <p>Pronto para começar</p>
+        return <C.DivHome>
+          <C.CardHomeSemFlex>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled
+                it to make a type specimen book. It has survived not only five centuries, 
+                but also the leap into electronic typesetting, remaining
+                 essentially unchanged. It was popularised in</p>
+          </C.CardHomeSemFlex>
+
+          <C.CardHome>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled
+                it to make a type specimen book. It has survived not only five centuries, 
+                but also the leap into electronic typesetting, remaining
+                 essentially unchanged. It was popularised in
+                 but also the leap into electronic typesetting, remaining
+                 essentially unchanged. It was popularised in</p>
+          </C.CardHome>
+        </C.DivHome>
       case "queroSerUmNinja":
         return <Cadastro />
       case "contrateUmServico":
@@ -41,7 +61,7 @@ export class AppContainer extends Component {
         />
 
       default:
-        return <appContainer/>
+        return <appContainer />
     }
   }
 
@@ -121,60 +141,60 @@ export class AppContainer extends Component {
   render() {
     return (
       <C.Global>
-        <C.GlobalStyle/>
+        <C.GlobalStyle />
         <C.FlexHeader>
           <C.FlexHeader>
-          <C.Img src ={Logo} onClick={this.mudarPaginaHome}/>
-          <h1 onClick={this.mudarPaginaHome}>
-            Labeninjas
-          </h1>
+            <C.Img src={Logo} onClick={this.mudarPaginaHome} />
+            <h1 onClick={this.mudarPaginaHome}>
+              Labeninjas
+            </h1>
           </C.FlexHeader>
 
           <div>
-      <ThemeProvider theme={theme}>
-        <Button variant="contained" color="primary"  onClick={this.mudarPaginaCadastro} >
-          Quero ser um ninja
-        </Button>
+            <ThemeProvider theme={theme}>
+              <Button variant="contained" color="primary" onClick={this.mudarPaginaCadastro} >
+                Quero ser um ninja
+              </Button>
 
-        <Button variant="contained" color="primary"  onClick={this.mudarPaginaServicos} >
-           Contrate um serviço
-        </Button>
+              <Button variant="contained" color="primary" onClick={this.mudarPaginaServicos} >
+                Contrate um serviço
+              </Button>
 
-        <Button variant="contained" color="primary" onClick={this.mudarPaginaCarrinho} >
-            Carrinho
-         </Button>
-         </ThemeProvider>
-         </div>
-         </C.FlexHeader>
-         <div>
-         {this.togglePage()}
-         </div>
-         
-         <C.FooterFlex>
-           <div>
-             <h3>Redes Sociais</h3>
-             <C.Social src = {FB}/>
-             <C.Social src = {INSTA}/>
-             <C.Social src = {TT}/>
-           </div>
+              <Button variant="contained" color="primary" onClick={this.mudarPaginaCarrinho} >
+                Carrinho
+              </Button>
+            </ThemeProvider>
+          </div>
+        </C.FlexHeader>
+        <div>
+          {this.togglePage()}
+        </div>
+
+        <C.FooterFlex>
+          <div>
+            <h3>Redes Sociais</h3>
+            <C.Social src={FB} />
+            <C.Social src={INSTA} />
+            <C.Social src={TT} />
+          </div>
           <C.Canais>
-           <div>
-             <h4>Atendimento:</h4>
-             <p>0800-999-541</p>
-             <p>sac@labeninjas.com</p>
-             </div>
+            <div>
+              <h4>Atendimento:</h4>
+              <p>0800-999-541</p>
+              <p>sac@labeninjas.com</p>
+            </div>
 
-             <div>
+            <div>
               <h4>Endereço:</h4>
               <p>Travessa Itatiba, número</p>
-           </div>
-           </C.Canais>
-         </C.FooterFlex>
-         
+            </div>
+          </C.Canais>
+        </C.FooterFlex>
+
         {/* <button onClick={this.mudarPaginaCadastro}>Quero ser um ninja</button>
         <button onClick={this.mudarPaginaServicos}>Contrate um serviço</button>
         <button onClick={this.mudarPaginaCarrinho}>Carrinho</button> */}
-        </C.Global>
+      </C.Global>
     )
   }
 }

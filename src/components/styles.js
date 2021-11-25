@@ -67,7 +67,29 @@ export const DivCadastro = styled.div`
       display: flex;
     }
 `
+export const DivHome = styled.div`
+display: flex;
+`
 
+export const CardHome = styled.div`
+box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+ rgba(0, 0, 0, 0.22) 0px 15px 12px;
+display: flex;
+width: 40%;
+border-radius: 10px;
+margin-left: 10vh ;
+margin-top: 20vh;
+text-align: justify;
+text-justify: inter-word;
+text-indent:initial;
+padding: 15px;
+`
+
+export  const CardHomeSemFlex = styled.div`
+margin-left: 10vh;
+width: 45%;
+margin-top: 20vh;
+`
 
 
 
