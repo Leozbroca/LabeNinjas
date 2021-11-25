@@ -43,7 +43,7 @@ export default class Carrinho extends React.Component {
                 {carrinho}
                 <div>
                     <p>Total: ${this.calcularValorTotal()}</p>
-                    <button>Finalizar</button>
+                    <button onClick = {this.props.finalizarCompra}>Finalizar</button>                
                 </div>
             </div>
         )
