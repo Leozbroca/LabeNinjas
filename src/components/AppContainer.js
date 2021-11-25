@@ -125,7 +125,7 @@ export class AppContainer extends Component {
         <C.FlexHeader>
           <C.FlexHeader>
           <C.Img src ={Logo} onClick={this.mudarPaginaHome}/>
-          <h1>
+          <h1 onClick={this.mudarPaginaHome}>
             Labeninjas
           </h1>
           </C.FlexHeader>

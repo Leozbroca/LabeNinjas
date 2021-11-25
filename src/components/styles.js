@@ -11,6 +11,7 @@ import { createGlobalStyle } from "styled-components";
 `;
 export const Img = styled.img`
 width: 50px;
+cursor: pointer;
 `
 
 export const FlexHeader = styled.div`
@@ -19,8 +20,10 @@ justify-content: space-between;
 align-items: center;
 box-shadow: 0px 1px 0px #00A8CC ; 
 
+
 h1{
     margin-left: 20px;
+    cursor: pointer;
 }
 button{
     margin: 0 60px ;
