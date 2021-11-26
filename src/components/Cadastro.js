@@ -19,6 +19,30 @@ export default class Cadastro extends React.Component {
         checkBoxPix: false,
     }
 
+    // ------------Função Geral------------
+
+    onChangeInputTitulo = (e) => {
+        this.setState({ inputTitulo: e.target.value })
+    }
+
+    onChangeInputDescricao = (e) => {
+        this.setState({ inputDescricao: e.target.value })
+    }
+
+    onChangeInputPreco = (e) => {
+        this.setState({ inputPreco: Number(e.target.value) })
+    }
+
+    onChangeInputsPagamentos = (e) => {
+        this.setState({ [e.target.name]: e.target.checked });
+    };
+
+    onChangeInputData = (e) => {
+        this.setState({ inputData: e.target.value });
+    };
+
+    // ------------Função API------------
+
     criarTrabalho = () => {
         const url = "https://labeninjas.herokuapp.com/jobs"
 
@@ -52,101 +76,82 @@ export default class Cadastro extends React.Component {
                 Authorization: "944276f6-19c0-49d4-ab75-a9d3e31490f9"
             }
         })
-            .then((res) => {
-                console.log("deu certo", res.data)
-            })
             .catch((err) => {
                 console.log("deu ruim", err.response.data.errors)
             })
     }
 
-    onChangeInputTitulo = (e) => {
-        this.setState({ inputTitulo: e.target.value })
-    }
-
-    onChangeInputDescricao = (e) => {
-        this.setState({ inputDescricao: e.target.value })
-    }
-
-    onChangeInputPreco = (e) => {
-        this.setState({ inputPreco: Number(e.target.value) })
-    }
-
-    onChangeInputsPagamentos = (e) => {
-        this.setState({ [e.target.name]: e.target.checked });
-    };
-
-    onChangeInputData = (e) => {
-        this.setState({ inputData: e.target.value });
-    };
 
     render() {
-        console.log(this.state.inputData)
+
         return (
             <div>
+
                 <C.DivCadastro>
+
                     <div>
                         <div>
-                        <label>Título:</label>
-                        <input
-                            value={this.state.inputTitulo}
-                            onChange={this.onChangeInputTitulo} />
+                            <label>Título:</label>
+                            <input
+                                value={this.state.inputTitulo}
+                                onChange={this.onChangeInputTitulo} />
                         </div>
-                    
-                    <div>
-                        <label>Descrição:</label>
-                        <input
-                            value={this.state.inputDescricao}
-                            onChange={this.onChangeInputDescricao} />
+
+                        <div>
+                            <label>Descrição:</label>
+                            <input
+                                value={this.state.inputDescricao}
+                                onChange={this.onChangeInputDescricao} />
+                        </div>
+                        <div>
+                            <label>Preço:</label>
+                            <input
+                                type="number"
+                                value={this.state.inputPreco}
+                                onChange={this.onChangeInputPreco} />
+                        </div>
+                        <div>
+                            <input
+                                name="checkBoxCredito"
+                                type="checkbox"
+                                checked={this.state.checkBoxCredito}
+                                onChange={this.onChangeInputsPagamentos}
+                            />
+                            <label>crédito</label>
+                            <input
+                                name="checkBoxDebito"
+                                type="checkbox"
+                                checked={this.state.checkBoxDebito}
+                                onChange={this.onChangeInputsPagamentos}
+                            />
+                            <label>débito</label>
+                            <input
+                                name="checkBoxBoleto"
+                                type="checkbox"
+                                checked={this.state.checkBoxBoleto}
+                                onChange={this.onChangeInputsPagamentos}
+                            />
+                            <label>boleto</label>
+                            <input
+                                name="checkBoxPix"
+                                type="checkbox"
+                                checked={this.state.checkBoxPix}
+                                onChange={this.onChangeInputsPagamentos}
+                            />
+                            <label>pix</label>
+                        </div>
                     </div>
-                    <div>
-                        <label>Preço:</label>
-                        <input
-                            type="number"
-                            value={this.state.inputPreco}
-                            onChange={this.onChangeInputPreco} />
-                    </div>
-                    <div>
-                        <input
-                            name="checkBoxCredito"
-                            type="checkbox"
-                            checked={this.state.checkBoxCredito}
-                            onChange={this.onChangeInputsPagamentos}
-                        />
-                        <label>crédito</label>
-                        <input
-                            name="checkBoxDebito"
-                            type="checkbox"
-                            checked={this.state.checkBoxDebito}
-                            onChange={this.onChangeInputsPagamentos}
-                        />
-                        <label>débito</label>
-                        <input
-                            name="checkBoxBoleto"
-                            type="checkbox"
-                            checked={this.state.checkBoxBoleto}
-                            onChange={this.onChangeInputsPagamentos}
-                        />
-                        <label>boleto</label>
-                        <input
-                            name="checkBoxPix"
-                            type="checkbox"
-                            checked={this.state.checkBoxPix}
-                            onChange={this.onChangeInputsPagamentos}
-                        />
-                        <label>pix</label>
-                    </div>
-                    </div>
+
                     <input type="date"
                         value={this.state.inputData}
                         onChange={this.onChangeInputData} />
-                         <ThemeProvider theme={theme}>
-                        <Button variant="contained" color="primary"  onClick={this.criarTrabalho} >
-                        Cadastrar
+
+                    <ThemeProvider theme={theme}>
+                        <Button variant="contained" color="primary" onClick={this.criarTrabalho} >
+                            Cadastrar
                         </Button>
-                        </ThemeProvider>
-                    {/* <button onClick={this.criarTrabalho} >Cadastrar</button> */}
-                    
+                    </ThemeProvider>
+
                 </C.DivCadastro>
             </div>
         )

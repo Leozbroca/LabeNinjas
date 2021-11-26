@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import Button from '@material-ui/core/Button';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './Temas'
@@ -10,6 +9,8 @@ import { theme } from './Temas'
 
 
 export default class Carrinho extends React.Component {
+
+    // ------------Função Geral------------
 
     calcularValorTotal = () => {
         let valorTotal = 0
@@ -22,28 +23,33 @@ export default class Carrinho extends React.Component {
     }
 
     render() {
+
         const carrinho = this.props.listaServicos.map((item) => {
             if (item.taken) {
                 return (<div key={item.id}>
                     {item.title}
                     ${item.price}
                     <ThemeProvider theme={theme}>
-                        <Button variant="contained" color="primary"  onClick={this.criarTrabalho} >
+                        <Button variant="contained" color="primary"  onClick={() => this.props.removendoDoCarrinho(item.id)} >
                         Remover
                         </Button>
                     </ThemeProvider>
-                    {/* <button onClick={() => this.props.removendoDoCarrinho(item.id)}>remover</button> */}
                 </div>)
             }
         })
 
         return (
+
             <div>
+
                 <b>Carrinho</b>
+
                 {carrinho}
+                
                 <div>
                     <p>Total: ${this.calcularValorTotal()}</p>
-                    <button>Finalizar</button>
+                    <button onClick = {this.props.finalizarCompra}>Finalizar</button>
+                    
                 </div>
             </div>
         )

@@ -1,7 +1,4 @@
 import React from "react";
-import axios from "axios";
-
-
 
 export default class Servicos extends React.Component {
 
@@ -11,6 +8,8 @@ export default class Servicos extends React.Component {
         buscaServico: "",
         ordenacao: "titulo"
     }
+
+    // ------------Função Geral------------
 
     componentDidMount = () => {
         this.props.getAllJobs()
@@ -33,8 +32,7 @@ export default class Servicos extends React.Component {
     }
 
     render() {
-        console.log(this.props.listaServicos)
-        console.log(this.props.getAllJobs)
+        
         const servicos = this.props.listaServicos.filter((item) => {
             return item.title.toLowerCase().includes(this.state.buscaServico.toLowerCase()) || item.description.toLowerCase().includes(this.state.buscaServico.toLowerCase())
         })
@@ -73,13 +71,18 @@ export default class Servicos extends React.Component {
                         <p>{item.price}</p>
                         <p>{item.dueDate}</p>
                         <p>Ver detalhes</p>
+                        <button onClick={() => this.props.mudarPaginaDetalhe(item.id)}>Detalhe Serviços</button>
                         <button onClick={() => this.props.adicionarAoCarrinho(item.id)}>Adicionar ao carrinho</button>
                     </div>
                 )
             })
+
         return (
+
             <div>
+
                 <div>
+
                     <input
                         placeholder="Valor Mínimo"
                         onChange={this.onChangeInputValorMin}
@@ -92,6 +95,7 @@ export default class Servicos extends React.Component {
                         placeholder="Busca por título ou descrição"
                         onChange={this.onChangeInputBuscaServico}
                     />
+                    
                     <select
                         onChange={this.onChangeSelectOrdenacao}
                         value={this.state.ordenacao}
