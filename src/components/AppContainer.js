@@ -11,6 +11,7 @@ import FB from '../IMG/fb.png'
 import INSTA from '../IMG/insta.png'
 import TT from '../IMG/tt.png'
 import * as C from './styles'
+import DetalhesServicos from './DetalhesServicos'
 
 
 
@@ -19,8 +20,10 @@ export class AppContainer extends Component {
   state = {
     page: "home",
     listaServicos: [],
+    jobDetalhes: {}
   }
 
+  // ------------Função Geral------------
 
   togglePage = () => {
     switch (this.state.page) {
@@ -28,37 +31,52 @@ export class AppContainer extends Component {
         return <C.DivHome>
           <C.CardHomeSemFlex>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                when an unknown printer took a galley of type and scrambled
-                it to make a type specimen book. It has survived not only five centuries, 
-                but also the leap into electronic typesetting, remaining
-                 essentially unchanged. It was popularised in</p>
+              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+              when an unknown printer took a galley of type and scrambled
+              it to make a type specimen book. It has survived not only five centuries,
+              but also the leap into electronic typesetting, remaining
+              essentially unchanged. It was popularised in</p>
           </C.CardHomeSemFlex>
 
           <C.CardHome>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-               Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                when an unknown printer took a galley of type and scrambled
-                it to make a type specimen book. It has survived not only five centuries, 
-                but also the leap into electronic typesetting, remaining
-                 essentially unchanged. It was popularised in
-                 but also the leap into electronic typesetting, remaining
-                 essentially unchanged. It was popularised in</p>
+              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+              when an unknown printer took a galley of type and scrambled
+              it to make a type specimen book. It has survived not only five centuries,
+              but also the leap into electronic typesetting, remaining
+              essentially unchanged. It was popularised in
+              but also the leap into electronic typesetting, remaining
+              essentially unchanged. It was popularised in</p>
           </C.CardHome>
+
         </C.DivHome>
+        break
       case "queroSerUmNinja":
         return <Cadastro />
+        break
+
       case "contrateUmServico":
         return <Servicos
           listaServicos={this.state.listaServicos}
           getAllJobs={this.getAllJobs}
           adicionarAoCarrinho={this.adicionarAoCarrinho}
+          mudarPaginaDetalhe={this.mudarPaginaDetalhe}
         />
+        break
+
       case "carrinho":
         return <Carrinho
           listaServicos={this.state.listaServicos}
           removendoDoCarrinho={this.removendoDoCarrinho}
+          finalizarCompra={this.finalizarCompra}
         />
+        break
+
+      case "detalhe":
+        return <DetalhesServicos 
+        jobDetalhes={this.state.jobDetalhes}
+        />
+        break
 
       default:
         return <appContainer />
@@ -68,7 +86,6 @@ export class AppContainer extends Component {
   mudarPaginaHome = () => {
     this.setState({ page: "home" })
   }
-
 
   mudarPaginaCadastro = () => {
     this.setState({ page: "queroSerUmNinja" })
@@ -81,6 +98,20 @@ export class AppContainer extends Component {
   mudarPaginaCarrinho = () => {
     this.setState({ page: "carrinho" })
   }
+
+  mudarPaginaDetalhe = (id) => {
+    this.setState({ page: "detalhe" })
+    this.getJobById(id)
+  }
+
+  finalizarCompra = () => {
+    for(let item of this.state.listaServicos){
+      this.removendoDoCarrinho(item.id)
+    }
+    alert("Obrigado pela compra!")
+  }
+  
+  // ------------Função API------------
 
   adicionarAoCarrinho = (id) => {
     const url = `https://labeninjas.herokuapp.com/jobs/${id}`
@@ -114,7 +145,6 @@ export class AppContainer extends Component {
       }
     })
       .then((res) => {
-        alert("Item removido do carrinho!")
         this.getAllJobs()
       })
       .catch((err) => {
@@ -131,7 +161,21 @@ export class AppContainer extends Component {
     })
       .then((res) => {
         this.setState({ listaServicos: res.data.jobs })
-        console.log(res)
+      })
+      .catch((err) => {
+        console.log("erro", err)
+      })
+  }
+
+  getJobById = (id) => {
+    const url = `https://labeninjas.herokuapp.com/jobs/${id}`
+    axios.get(url, {
+      headers: {
+        Authorization: "944276f6-19c0-49d4-ab75-a9d3e31490f9"
+      }
+    })
+      .then((res) => {
+        this.setState({ jobDetalhes: res.data })
       })
       .catch((err) => {
         console.log("erro", err)
@@ -140,9 +184,13 @@ export class AppContainer extends Component {
 
   render() {
     return (
+
       <C.Global>
+
         <C.GlobalStyle />
+
         <C.FlexHeader>
+
           <C.FlexHeader>
             <C.Img src={Logo} onClick={this.mudarPaginaHome} />
             <h1 onClick={this.mudarPaginaHome}>
@@ -151,6 +199,7 @@ export class AppContainer extends Component {
           </C.FlexHeader>
 
           <div>
+
             <ThemeProvider theme={theme}>
               <Button variant="contained" color="primary" onClick={this.mudarPaginaCadastro} >
                 Quero ser um ninja
@@ -164,19 +213,24 @@ export class AppContainer extends Component {
                 Carrinho
               </Button>
             </ThemeProvider>
+
           </div>
+
         </C.FlexHeader>
+
         <div>
           {this.togglePage()}
         </div>
 
         <C.FooterFlex>
+
           <div>
             <h3>Redes Sociais</h3>
             <C.Social src={FB} />
             <C.Social src={INSTA} />
             <C.Social src={TT} />
           </div>
+
           <C.Canais>
             <div>
               <h4>Atendimento:</h4>
@@ -189,11 +243,10 @@ export class AppContainer extends Component {
               <p>Travessa Itatiba, número</p>
             </div>
           </C.Canais>
+
         </C.FooterFlex>
 
-        {/* <button onClick={this.mudarPaginaCadastro}>Quero ser um ninja</button>
-        <button onClick={this.mudarPaginaServicos}>Contrate um serviço</button>
-        <button onClick={this.mudarPaginaCarrinho}>Carrinho</button> */}
+
       </C.Global>
     )
   }
