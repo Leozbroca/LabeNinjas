@@ -76,6 +76,15 @@ export default class Cadastro extends React.Component {
                 Authorization: "944276f6-19c0-49d4-ab75-a9d3e31490f9"
             }
         })
+            .then((res) => {
+                alert("Serviço cadastrado com sucesso!")
+                this.setState({
+                    inputTitulo: "",
+                    inputDescricao: "",
+                    inputPreco: "",
+                    inputData: "",
+                })
+            })
             .catch((err) => {
                 console.log("deu ruim", err.response.data.errors)
             })
@@ -85,32 +94,32 @@ export default class Cadastro extends React.Component {
     render() {
 
         return (
-            <div>
+            <C.DivMainCadastro>
 
                 <C.DivCadastro>
 
                     <div>
-                        <div>
+                        <C.DivInputs>
                             <label>Título:</label>
                             <input
                                 value={this.state.inputTitulo}
                                 onChange={this.onChangeInputTitulo} />
-                        </div>
+                        </C.DivInputs>
 
-                        <div>
+                        <C.DivInputs>
                             <label>Descrição:</label>
                             <input
                                 value={this.state.inputDescricao}
                                 onChange={this.onChangeInputDescricao} />
-                        </div>
-                        <div>
+                        </C.DivInputs>
+                        <C.DivInputs>
                             <label>Preço:</label>
                             <input
                                 type="number"
                                 value={this.state.inputPreco}
                                 onChange={this.onChangeInputPreco} />
-                        </div>
-                        <div>
+                        </C.DivInputs>
+                        <C.DivInputs>
                             <input
                                 name="checkBoxCredito"
                                 type="checkbox"
@@ -139,21 +148,25 @@ export default class Cadastro extends React.Component {
                                 onChange={this.onChangeInputsPagamentos}
                             />
                             <label>pix</label>
-                        </div>
+                        </C.DivInputs>
+
+                        <C.DivInputs>
+                            <label>Data:</label>
+                            <input
+                                type="date"
+                                value={this.state.inputData}
+                                onChange={this.onChangeInputData} />
+                        </C.DivInputs>
                     </div>
-
-                    <input type="date"
-                        value={this.state.inputData}
-                        onChange={this.onChangeInputData} />
-
-                    <ThemeProvider theme={theme}>
-                        <Button variant="contained" color="primary" onClick={this.criarTrabalho} >
-                            Cadastrar
-                        </Button>
-                    </ThemeProvider>
-
+                    <C.DivButton>
+                        <ThemeProvider theme={theme}>
+                            <Button variant="contained" color="primary" onClick={this.criarTrabalho} >
+                                Cadastrar
+                            </Button>
+                        </ThemeProvider>
+                    </C.DivButton>
                 </C.DivCadastro>
-            </div>
+            </C.DivMainCadastro>
         )
     }
 }
