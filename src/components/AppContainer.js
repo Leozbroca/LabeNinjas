@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Cadastro from './Cadastro'
 import Servicos from './Servicos'
 import Carrinho from './Carrinho'
+import Home from './Home'
 import axios from 'axios'
 import Button from '@material-ui/core/Button';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -28,28 +29,7 @@ export class AppContainer extends Component {
   togglePage = () => {
     switch (this.state.page) {
       case "home":
-        return <C.DivHome>
-          <C.CardHomeSemFlex>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-              when an unknown printer took a galley of type and scrambled
-              it to make a type specimen book. It has survived not only five centuries,
-              but also the leap into electronic typesetting, remaining
-              essentially unchanged. It was popularised in</p>
-          </C.CardHomeSemFlex>
-
-          <C.CardHome>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-              when an unknown printer took a galley of type and scrambled
-              it to make a type specimen book. It has survived not only five centuries,
-              but also the leap into electronic typesetting, remaining
-              essentially unchanged. It was popularised in
-              but also the leap into electronic typesetting, remaining
-              essentially unchanged. It was popularised in</p>
-          </C.CardHome>
-
-        </C.DivHome>
+        return <Home/>
         break
       case "queroSerUmNinja":
         return <Cadastro />
@@ -191,22 +171,22 @@ export class AppContainer extends Component {
 
         <C.FlexHeader>
 
-          <C.FlexHeader>
+          <div>
             <C.Img src={Logo} onClick={this.mudarPaginaHome} />
             <h1 onClick={this.mudarPaginaHome}>
               Labeninjas
             </h1>
-          </C.FlexHeader>
+          </div>
 
           <div>
 
             <ThemeProvider theme={theme}>
               <Button variant="contained" color="primary" onClick={this.mudarPaginaCadastro} >
-                Quero ser um ninja
+                Seja um ninja
               </Button>
 
               <Button variant="contained" color="primary" onClick={this.mudarPaginaServicos} >
-                Contrate um serviço
+                Serviços
               </Button>
 
               <Button variant="contained" color="primary" onClick={this.mudarPaginaCarrinho} >
@@ -218,18 +198,23 @@ export class AppContainer extends Component {
 
         </C.FlexHeader>
 
-        <div>
+        <C.HomeContent>
           {this.togglePage()}
-        </div>
+        </C.HomeContent>
 
         <C.FooterFlex>
+          
+          <C.RedesSociais>
+            
+            <h4>Redes Sociais:</h4>
 
-          <div>
-            <h3>Redes Sociais</h3>
-            <C.Social src={FB} />
-            <C.Social src={INSTA} />
-            <C.Social src={TT} />
-          </div>
+            <div>
+            <img src={FB} />
+            <img src={INSTA} />
+            <img src={TT} />
+            </div>
+
+          </C.RedesSociais>
 
           <C.Canais>
             <div>

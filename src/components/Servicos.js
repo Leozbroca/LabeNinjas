@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 
 export default class Servicos extends React.Component {
 
@@ -69,7 +70,7 @@ export default class Servicos extends React.Component {
                         <p>{item.title}</p>
                         <p>{item.description}</p>
                         <p>{item.price}</p>
-                        <p>{item.dueDate}</p>
+                        <p>{moment(item.dueDate).format('DD-MM-YYYY')}</p>
                         <p>Ver detalhes</p>
                         <button onClick={() => this.props.mudarPaginaDetalhe(item.id)}>Detalhe Serviços</button>
                         <button onClick={() => this.props.adicionarAoCarrinho(item.id)}>Adicionar ao carrinho</button>
