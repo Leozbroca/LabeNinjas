@@ -1,7 +1,9 @@
 import React from "react";
 import moment from "moment";
 import * as C from './styles'
-
+import Button from '@material-ui/core/Button';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { theme } from './Temas'
 
 export default class Servicos extends React.Component {
 
@@ -69,12 +71,17 @@ export default class Servicos extends React.Component {
             .map((item) => {
                 return (
                     <C.DivCard key={item.id}>
-                        <h3>{item.title}</h3>
+                        <h3 onClick={() => this.props.mudarPaginaDetalhe(item.id)}>{item.title}</h3>
                         <p>{item.description}</p>
                         <p>Até {moment(item.dueDate).format('DD/MM/YYYY')} por R${item.price},00</p>
+                        
                         <C.DivDetalhes>
-                            <p onClick={() => this.props.mudarPaginaDetalhe(item.id)}>Ver detalhes</p>
-                            <button onClick={() => this.props.adicionarAoCarrinho(item.id)}>Adicionar ao carrinho</button>
+                            
+                            <ThemeProvider theme={theme}>
+                                <Button variant="contained" color="primary" onClick={() => this.props.adicionarAoCarrinho(item.id)} >
+                                Adicionar ao carrinho
+                                </Button>
+                            </ThemeProvider>
                         </C.DivDetalhes>
                     </C.DivCard>
                 )

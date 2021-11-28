@@ -144,12 +144,14 @@ export const DivCadastro = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20vh;
+    margin-top: 15vh;
     box-shadow: rgba(0, 168, 204, 0.8) 0px 10px 15px;
-    width: 600px;
-    height: 300px;
+    width: 60%;
+    height: 65%;
     justify-content: center;
-    transform: scale(1.3);
+    border-radius: 10px;
+    padding: 15px;
+
     p{
       display: flex;
     }
@@ -177,15 +179,18 @@ export const DivFiltro = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
+
   input{
-    height: 50px;
+    width: 200px;
+    height: 25px;
     margin: 5px;
     border: 1px solid rgba(0, 168, 204, 0.8);
     border-radius: 10px;
   }
   select{
     color: rgba(0, 168, 204, 0.8);
-    height: 50px;
+    height: 25px;
+    margin: 5px;
     border: 1px solid rgba(0, 168, 204, 0.8);
     border-radius: 10px;
     cursor: pointer;
@@ -195,8 +200,7 @@ export const DivFiltro = styled.div`
 export const DivMainContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  margin: 15px;
+  margin: 10px;
 `
 
 export const DivCard = styled.div`
@@ -204,29 +208,101 @@ export const DivCard = styled.div`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  margin: 5px;
+  padding: 10px;
+
   h3{
     color: rgb(255, 164, 27);
-    font-family: cursive;
     font-size: 25px;
+    cursor: pointer;
+    margin: 0px;
   }
 `
 
 export const DivDetalhes = styled.div`
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
   p{
+    display: block;
+    margin: 2px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 18px;
     :hover{
-      font-style: italic
+      font-weight: bolder;
     }
   }
   button{
     height: 30px;
     cursor: pointer;
-    margin-left: 10px;
   }
 `
+
+//----Conteudo Detalhes Serviços----
+
+export const DisplayDetalhesServ = styled.div `
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+`
+
+export const DivDetalhesServ = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15vh;
+    box-shadow: rgba(0, 168, 204, 0.8) 0px 10px 15px;
+    width: 40%;
+    height: 55%;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 15px;
+
+    h3 {
+      margin: 2px;
+      font-size: 18px;
+    }
+
+    p {
+      margin: 0px
+    }
+    `
+
+//----Conteudo Carrinho----
+
+export const DisplayCarrinho = styled.div `
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5vh;
+  box-shadow: rgba(0, 168, 204, 0.8) 0px 10px 15px;
+  border-radius: 10px;
+  padding: 10px;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    button {
+      margin: 10px
+    }
+  }
+`
+
+export const DivCarrinho = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    height: 55%;
+    justify-content: center;
+    margin: 10px;
+
+    div {
+      display: flex;
+      justify-content: space-between;
+      width: 70%;
+
+    }
+    `

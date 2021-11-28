@@ -2,10 +2,7 @@ import React from "react";
 import Button from '@material-ui/core/Button';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './Temas'
-// import Stack from '@mui/material/Stack';
-// import IconButton from '@mui/material/IconButton';
-// import DeleteIcon from '@mui/icons-material/Delete';
-
+import * as C from './styles'
 
 
 export default class Carrinho extends React.Component {
@@ -26,32 +23,38 @@ export default class Carrinho extends React.Component {
 
         const carrinho = this.props.listaServicos.map((item) => {
             if (item.taken) {
-                return (<div key={item.id}>
-                    {item.title}
-                    ${item.price}
+                return (<C.DivCarrinho key={item.id}>
+                    <div>
+                    <p>{item.title}</p>
+                    <p>${item.price}</p>
+                    </div>
+                    
                     <ThemeProvider theme={theme}>
                         <Button variant="contained" color="primary"  onClick={() => this.props.removendoDoCarrinho(item.id)} >
                         Remover
                         </Button>
                     </ThemeProvider>
-                </div>)
+                </C.DivCarrinho>)
             }
         })
 
         return (
 
-            <div>
+            <C.DisplayCarrinho>
 
-                <b>Carrinho</b>
+                <h1>Carrinho</h1>
 
                 {carrinho}
                 
                 <div>
                     <p>Total: ${this.calcularValorTotal()}</p>
-                    <button onClick = {this.props.finalizarCompra}>Finalizar</button>
-                    
+                    <ThemeProvider theme={theme}>
+                                <Button variant="contained" color="primary" onClick={this.props.finalizarCompra} >
+                                Finalizar
+                                </Button>
+                    </ThemeProvider>
                 </div>
-            </div>
+            </C.DisplayCarrinho>
         )
     }
 }
