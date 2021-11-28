@@ -1,5 +1,7 @@
 import React from "react";
 import moment from "moment";
+import * as C from './styles'
+
 
 export default class Servicos extends React.Component {
 
@@ -33,7 +35,7 @@ export default class Servicos extends React.Component {
     }
 
     render() {
-        
+
         const servicos = this.props.listaServicos.filter((item) => {
             return item.title.toLowerCase().includes(this.state.buscaServico.toLowerCase()) || item.description.toLowerCase().includes(this.state.buscaServico.toLowerCase())
         })
@@ -66,15 +68,15 @@ export default class Servicos extends React.Component {
 
             .map((item) => {
                 return (
-                    <div key={item.id}>
-                        <p>{item.title}</p>
+                    <C.DivCard key={item.id}>
+                        <h3>{item.title}</h3>
                         <p>{item.description}</p>
-                        <p>{item.price}</p>
-                        <p>{moment(item.dueDate).format('DD-MM-YYYY')}</p>
-                        <p>Ver detalhes</p>
-                        <button onClick={() => this.props.mudarPaginaDetalhe(item.id)}>Detalhe Serviços</button>
-                        <button onClick={() => this.props.adicionarAoCarrinho(item.id)}>Adicionar ao carrinho</button>
-                    </div>
+                        <p>Até {moment(item.dueDate).format('DD/MM/YYYY')} por R${item.price},00</p>
+                        <C.DivDetalhes>
+                            <p onClick={() => this.props.mudarPaginaDetalhe(item.id)}>Ver detalhes</p>
+                            <button onClick={() => this.props.adicionarAoCarrinho(item.id)}>Adicionar ao carrinho</button>
+                        </C.DivDetalhes>
+                    </C.DivCard>
                 )
             })
 
@@ -82,34 +84,36 @@ export default class Servicos extends React.Component {
 
             <div>
 
-                <div>
+                <C.DivFiltro>
+                    <div>
+                        <input
+                            placeholder="Valor Mínimo"
+                            onChange={this.onChangeInputValorMin}
+                        />
+                        <input
+                            placeholder="Valor Máximo"
+                            onChange={this.onChangeInputValorMax}
+                        />
+                        <input
+                            placeholder="Busca por título ou descrição"
+                            onChange={this.onChangeInputBuscaServico}
+                        />
+                    </div>
+                    <div>
+                        <select
+                            onChange={this.onChangeSelectOrdenacao}
+                            value={this.state.ordenacao}
+                        >
+                            <option value="sem ordenacao">Sem Ordenação</option>
+                            <option value="menor valor">Menor Valor</option>
+                            <option value="maior valor">Maior Valor</option>
+                            <option value="titulo">Título</option>
+                            <option value="prazo">Prazo</option>
+                        </select>
+                    </div>
+                </C.DivFiltro>
 
-                    <input
-                        placeholder="Valor Mínimo"
-                        onChange={this.onChangeInputValorMin}
-                    />
-                    <input
-                        placeholder="Valor Máximo"
-                        onChange={this.onChangeInputValorMax}
-                    />
-                    <input
-                        placeholder="Busca por título ou descrição"
-                        onChange={this.onChangeInputBuscaServico}
-                    />
-                    
-                    <select
-                        onChange={this.onChangeSelectOrdenacao}
-                        value={this.state.ordenacao}
-                    >
-                        <option value="sem ordenacao">Sem Ordenação</option>
-                        <option value="menor valor">Menor Valor</option>
-                        <option value="maior valor">Maior Valor</option>
-                        <option value="titulo">Título</option>
-                        <option value="prazo">Prazo</option>
-                    </select>
-                </div>
-
-                <div>{servicos}</div>
+                <C.DivMainContainer>{servicos}</C.DivMainContainer>
 
             </div>
         )

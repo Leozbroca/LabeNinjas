@@ -132,20 +132,101 @@ display: flex;
 
 `
 
+//----Conteudo Cadastro----
 
+
+export const DivMainCadastro = styled.div`
+  display: flex;
+  justify-content: center;
+`
 
 export const DivCadastro = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 20vh;
+    box-shadow: rgba(0, 168, 204, 0.8) 0px 10px 15px;
+    width: 600px;
+    height: 300px;
+    justify-content: center;
+    transform: scale(1.3);
     p{
       display: flex;
     }
 `
 
+export const DivInputs = styled.div`
+  display: flex;
+  width: 450px;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  
+  input{
+    width: 80%;
+    border: 0.1px solid rgba(0, 168, 204, 0.8);
+  }
+`
 
+export const DivButton = styled.div`
+  padding-bottom: 10px;
+`
 
+//----Conteudo Serviços----
 
+export const DivFiltro = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  input{
+    height: 50px;
+    margin: 5px;
+    border: 1px solid rgba(0, 168, 204, 0.8);
+    border-radius: 10px;
+  }
+  select{
+    color: rgba(0, 168, 204, 0.8);
+    height: 50px;
+    border: 1px solid rgba(0, 168, 204, 0.8);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+`
 
+export const DivMainContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin: 15px;
+`
 
+export const DivCard = styled.div`
+  box-shadow: rgba(0, 168, 204, 0.8) 0px 5px 8px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  h3{
+    color: rgb(255, 164, 27);
+    font-family: cursive;
+    font-size: 25px;
+  }
+`
+
+export const DivDetalhes = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  p{
+    cursor: pointer;
+    font-size: 20px;
+    :hover{
+      font-style: italic
+    }
+  }
+  button{
+    height: 30px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+`
