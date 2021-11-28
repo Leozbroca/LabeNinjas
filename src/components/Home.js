@@ -23,7 +23,7 @@ export default class Home extends React.Component {
                         <IconContext.Provider value={{ size: '45px' }}>
                             <div>
                                 <GrConfigure />
-                                <p>kasidad</p>
+                                <p>Assistência Técnica</p>
                             </div>
                         </IconContext.Provider>
                     </div>
@@ -32,7 +32,7 @@ export default class Home extends React.Component {
                         <IconContext.Provider value={{ size: '45px' }}>
                             <div>
                                 <GrCode />
-                                <p>kasidad</p>
+                                <p>Tecnologia</p>
                             </div>
                         </IconContext.Provider>
                     </div>
@@ -41,7 +41,7 @@ export default class Home extends React.Component {
                         <IconContext.Provider value={{ size: '45px' }}>
                             <div>
                                 <GrCafeteria />
-                                <p>kasidad</p>
+                                <p>Eventos</p>
                             </div>
                         </IconContext.Provider>
                     </div>
@@ -50,7 +50,7 @@ export default class Home extends React.Component {
                         <IconContext.Provider value={{ size: '45px' }}>
                             <div>
                                 <GrCoatCheck />
-                                <p>kasidad</p>
+                                <p>Moda</p>
                             </div>
                         </IconContext.Provider>
                     </div>
@@ -59,7 +59,7 @@ export default class Home extends React.Component {
                         <IconContext.Provider value={{ size: '45px' }}>
                             <div>
                                 <GrCar />
-                                <p>kasidad</p>
+                                <p>Autos</p>
                             </div>
                         </IconContext.Provider>
                     </div>
@@ -68,7 +68,7 @@ export default class Home extends React.Component {
                         <IconContext.Provider value={{ size: '45px' }}>
                             <div>
                                 <GrBaby />
-                                <p>kasidad</p>
+                                <p>Cuidadores</p>
                             </div>
                         </IconContext.Provider>
                     </div>

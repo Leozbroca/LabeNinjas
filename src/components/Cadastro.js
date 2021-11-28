@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import styled from "styled-components";
 import Button from '@material-ui/core/Button';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './Temas'
