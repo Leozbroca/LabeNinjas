@@ -19,7 +19,7 @@ import DetalhesServicos from './DetalhesServicos'
 
 export class AppContainer extends Component {
   state = {
-    page: "carrinho",
+    page: "home",
     listaServicos: [],
     jobDetalhes: {}
   }
